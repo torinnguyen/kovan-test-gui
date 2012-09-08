@@ -35,8 +35,6 @@ linux-gnueabi-oe-g++ {
     QMAKE_CXXFLAGS += -Wno-psabi
 }
 
-
-
 HEADERS  += kovantestwindow.h \
     kovantest.h \
     externaltest.h \
@@ -50,3 +48,23 @@ HEADERS  += kovantestwindow.h \
     fpga.h
 
 FORMS    += kovantestwindow.ui
+
+#-----------------------------------------------------------
+
+# Name of output folders
+# Changes the name of the target, when is debug mode
+CONFIG( debug, debug|release ) {
+    TARGET = $${TARGET}_debug
+    BUILD_NAME = debug
+}
+CONFIG( release, debug|release ) {
+    BUILD_NAME = release
+}
+
+# Temporary folders for the auxiliar files
+INCLUDEPATH += $$PWD/tmp/$$BUILD_NAME
+OBJECTS_DIR = $$PWD/tmp/$$BUILD_NAME
+MOC_DIR = $$PWD/tmp/$$BUILD_NAME
+UI_DIR = $$PWD/tmp
+RCC_DIR = $$PWD/tmp
+DESTDIR = $$PWD/bin
