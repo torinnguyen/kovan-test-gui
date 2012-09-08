@@ -143,7 +143,10 @@ void WifiTest::runTest() {
     // Compare the result with the file on disk.
     delete hash;
     hash = new QCryptographicHash(QCryptographicHash::Sha1);
-    system("sync");
+    int sysret = system("sync");
+    if (sysret == -1) {
+        //error
+    }
     if (!file->open(QIODevice::ReadOnly)) {
         emit testStateUpdated(TEST_INFO, 0, new QString("Attempted to open file for hash check but failed"));
         return;

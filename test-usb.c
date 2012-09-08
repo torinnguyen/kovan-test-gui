@@ -67,7 +67,10 @@ static int find_usb_device(struct usb_descr *desc, char *product) {
 		}
 
 		bzero(read_product, sizeof(read_product));
-		fread(read_product, sizeof(read_product)-1, 1, prod);
+        int sysret = fread(read_product, sizeof(read_product)-1, 1, prod);
+        if (sysret == -1) {
+            //error
+        }
 		fclose(prod);
 		for (i=0; i<sizeof(read_product); i++)
 			if (read_product[i] == '\n')
@@ -83,7 +86,10 @@ static int find_usb_device(struct usb_descr *desc, char *product) {
 			harness_debug(5, "Unable to open busnum %s: %s", prodfile, strerror(errno));
 			continue;
 		}
-		fscanf(prod, "%d", &desc->busnum);
+        sysret = fscanf(prod, "%d", &desc->busnum);
+        if (sysret == -1) {
+            //error
+        }
 		fclose(prod);
 
 
@@ -93,7 +99,10 @@ static int find_usb_device(struct usb_descr *desc, char *product) {
 			harness_debug(5, "Unable to open devnum %s: %s", prodfile, strerror(errno));
 			continue;
 		}
-		fscanf(prod, "%d", &desc->devnum);
+        sysret = fscanf(prod, "%d", &desc->devnum);
+        if (sysret == -1) {
+            //error
+        }
 		fclose(prod);
 
 
@@ -196,7 +205,11 @@ int test_usb(void) {
 	int ret = 0;
 	int tries;
 
-	system("systemctl stop network-gadget-init.service 2> /dev/null > /dev/null");
+    int sysret = system("systemctl stop network-gadget-init.service 2> /dev/null > /dev/null");
+    if (sysret == -1) {
+        //error
+    }
+
 	my_delete_module("g_ether");
 	my_init_module(G_ZERO_PATH);
 	my_init_module(USBTEST_PATH);

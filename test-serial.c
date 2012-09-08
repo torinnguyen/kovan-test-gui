@@ -26,7 +26,10 @@ int test_serial(void) {
 	struct termios old_ext, old_int, new_ext, new_int;
 
 	/* Quick hack to stop /dev/ttyS0 service */
-	system("systemctl stop serial-getty@ttyS0.service 2> /dev/null > /dev/null");
+    int sysret = system("systemctl stop serial-getty@ttyS0.service 2> /dev/null > /dev/null");
+    if (sysret == -1) {
+        //error
+    }
 
 	ext_fd = open(EXT_DEV_NAME, O_RDWR | O_NOCTTY);
 	if (-1 == ext_fd) {
