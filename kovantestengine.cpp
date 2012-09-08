@@ -117,30 +117,35 @@ bool KovanTestEngine::runSelectedTests(QList<KovanTest *> &newTests)
 	return runNextTest();
 }
 
+/*
 static const char *levelStr[] = {
     "<font color=\"blue\">INFO</font>",
     "<font color=\"red\">ERROR</font>",
     "<font color=\"green\">DEBUG</font>",
 };
+*/
 
 void KovanTestEngine::updateTestState(int level, int value, QString *message)
 {
-
+    /*
 	QString str;
     str.append("<p>");
     str.append(levelStr[level]);
     str.append(": ");
     str.append(message);
     ui->addTestLog(str);
+    */
 
     if (level == TEST_INFO)
         qDebug() << "INFO:" << level << value << message->toAscii();
 	else if (level == TEST_ERROR) {
         qDebug() << "ERROR:" << level << value << message->toAscii();
 		errorCount++;
+        /*
 		QString str;
 		str.append(testsToRun.at(currentTestNumber)->testName());
 		ui->setErrorString(str);
+        */
 	}
     else if (level == TEST_DEBUG)
         qDebug() << "DEBUG:" << level << value << message->toAscii();
@@ -164,17 +169,21 @@ void KovanTestEngine::cleanupCurrentTest() {
 bool KovanTestEngine::runNextTest(int continueOnErrors)
 {
 	if (errorCount && !continueOnErrors && !debugMode) {
+        /*
 		QString str;
 		str.append(testsToRun.at(currentTestNumber)->testName());
 		ui->finishTests(false);
+        */
 		return false;
 	}
 
 	// Increment the test number, and return if we've run out of tests.
     currentTestNumber++;
 	if (currentTestNumber >= testsToRun.count()) {
+        /*
         ui->setProgressBar(1);
 		ui->finishTests(errorCount?false:true);
+        */
 		return false;
     }
 
@@ -185,10 +194,12 @@ bool KovanTestEngine::runNextTest(int continueOnErrors)
                      this, SLOT(cleanupCurrentTest()));
     currentThread->start();
 
+    /*
     ui->setStatusText(currentTest->testName());
 	ui->setProgressBar(currentTestNumber*1.0/testsToRun.count());
     QString progressText;
 	progressText.sprintf("Progress: %d/%d", currentTestNumber+1, testsToRun.count());
     ui->setProgressText(progressText);
+    */
     return true;
 }

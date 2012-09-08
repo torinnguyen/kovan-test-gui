@@ -38,15 +38,9 @@ private:
 	void openLogFile();
 
 public slots:
-    void startTests();
-	void debugMode1Clicked();
-	void debugMode2Clicked();
-	void debugMode3Clicked();
-	void debugItemPressed(QListWidgetItem *item);
-	void debugRunSelectedItems();
 
-	void moveToDebugScreen();
-	void moveToMainScreen();
+    void onButtonClicked();
+    void offButtonClicked();
 };
 
 #endif // KOVANTESTWINDOW_H
