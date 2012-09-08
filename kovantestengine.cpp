@@ -75,7 +75,6 @@ bool KovanTestEngine::loadAllTests() {
     tests.append(new DelayedTextPrintTest(new QString("Starting tests..."), 1));
     tests.append(new ExternalTest(new QString("test-accel-start")));
     tests.append(new HDMITest());
-    tests.append(new ExternalTest(new QString("test-audio")));
     tests.append(new ExternalTest(new QString("test-serial")));
     tests.append(new ExternalTest(new QString("test-servo")));
     tests.append(new ExternalTest(new QString("test-io")));

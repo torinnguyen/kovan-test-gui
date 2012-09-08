@@ -31,11 +31,6 @@ static struct tests tests[] = {
 				"Start accelerometer read",
                 "test-accel-start",
         },
-        { // 1  
-                test_audio,
-                "Test audio generation",
-                "test-audio",
-        },
         { // 2  
                 test_serial,
                 "Test serial ports",

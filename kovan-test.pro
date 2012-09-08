@@ -16,11 +16,9 @@ SOURCES += main.cpp\
     externaltest.cpp \
     kovantestengine.cpp \
     delayedtextprinttest.cpp \
-    audiotest.cpp \
     motortest.cpp \
     switchtest.cpp \
     test-accel.c \
-    test-audio.c \
     test-io.c \
     test-serial.c \
     test-servo.c \
@@ -45,7 +43,6 @@ HEADERS  += kovantestwindow.h \
     kovantestengine.h \
     delayedtextprinttest.h \
     batterytest.h \
-    audiotest.h \
     motortest.h \
     switchtest.h \
     hdmitest.h \
