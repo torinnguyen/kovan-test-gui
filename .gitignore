@@ -1,5 +1,8 @@
 *.o
 *.swp
+*.user
+*.app
+/tmp
 Makefile
 moc*
 ui_*.h
