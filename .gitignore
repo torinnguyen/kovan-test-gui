@@ -8,3 +8,5 @@ moc*
 ui_*.h
 kovan-test
 kovan-test.pro.user
+make-arm.sh
+
