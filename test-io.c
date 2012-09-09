@@ -10,6 +10,30 @@
 
 #define DIG_VALS 0x84
 
+int enable_digital_ouput(int channel, int isEnabled)
+{
+    sync_fpga();
+
+    uint8_t val = get_fpga(DIG_OE);
+    if (isEnabled)      val |= 0x01 << channel;
+    else                val &= ~(0x01 << channel);
+    set_fpga(DIG_OE, val);
+
+    sync_fpga();
+}
+
+int onoff_digital_io(int channel, int isOn)
+{
+    sync_fpga();
+
+    uint8_t val = get_fpga(DIG_OV);
+    if (isOn)       val |= 0x01 << channel;
+    else            val &= ~(0x01 << channel);
+    set_fpga(DIG_OV, val);
+
+    sync_fpga();
+}
+
 int test_io(void) {
 	uint8_t val;
 	int errors = 0;

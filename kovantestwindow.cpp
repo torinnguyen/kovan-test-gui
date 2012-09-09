@@ -7,6 +7,7 @@
 
 #include "kovantestwindow.h"
 #include "ui_kovantestwindow.h"
+#include "utils-io.h"
 
 class BiggerScrollbar : public QCleanlooksStyle {
 
@@ -48,12 +49,14 @@ KovanTestWindow::~KovanTestWindow()
 
 void KovanTestWindow::onButtonClicked()
 {
-
+    enable_digital_ouput(0, true);
+    onoff_digital_io(0, true);
 }
 
 void KovanTestWindow::offButtonClicked()
 {
-
+    enable_digital_ouput(0, true);
+    onoff_digital_io(0, false);
 }
 
 
